@@ -187,7 +187,7 @@ h1 em{font-style:normal;color:var(--red);display:block}
 /* ===== ФОТО АВТОРА ===== */
 .author{display:flex;flex-direction:column;gap:26px}
 .author-photo{position:relative;border:1px solid var(--line-hi);border-radius:3px;overflow:hidden;background:var(--ink)}
-.author-photo img{display:block;width:100%;filter:grayscale(.35) contrast(1.05);transition:transform 1.3s cubic-bezier(.2,.7,.2,1),filter .7s}
+.author-photo img{display:block;width:100%;height:auto;object-fit:cover;filter:grayscale(.35) contrast(1.05);transition:transform 1.3s cubic-bezier(.2,.7,.2,1),filter .7s}
 .author-photo:hover img{transform:scale(1.045);filter:grayscale(0) contrast(1.09)}
 .author-photo .cap{position:absolute;left:0;right:0;bottom:0;padding:20px 18px 16px;background:linear-gradient(transparent,rgba(8,8,10,.94));font-family:var(--f-mono);font-size:12px;letter-spacing:.15em;text-transform:uppercase;color:var(--text-2);line-height:1.7}
 .author-photo .cap b{color:var(--red);font-weight:700}
