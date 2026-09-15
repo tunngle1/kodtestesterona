@@ -545,7 +545,7 @@ footer{border-top:1px solid var(--line);padding-block:28px 110px;color:var(--tex
       <a href="#dialog">Цена</a>
       <a href="#faq">Вопросы</a>
     </div>
-    <a class="btn" href="#dialog"><span>Написать</span></a>
+    <button class="btn" id="navPayment"><span>Оплатить</span></button>
   </div>
 </nav>
 
@@ -1078,12 +1078,17 @@ footer{border-top:1px solid var(--line);padding-block:28px 110px;color:var(--tex
           <button class="btn" id="openPayment"><span>Оплатить</span></button>
         </div>
       </div>
-      <div id="payment-widget" style="display:none;">
-        <script id="9502e84c8faf10f8c27b0055559484917bdc5ebc" src="https://kodtestosterona.online/pl/lite/widget/script?id=1647100"></script>
-      </div>
     </div>
   </div>
 </section>
+
+<!-- МОДАЛЬНОЕ ОКНО ОПЛАТЫ -->
+<div id="paymentModal" style="display:none;position:fixed;inset:0;z-index:100;background:rgba(8,8,10,0.95);backdrop-filter:blur(10px);overflow-y:auto;">
+  <button id="closePaymentModal" style="position:fixed;top:20px;right:20px;z-index:101;background:var(--card);border:1px solid var(--line-hi);color:var(--text);padding:12px 16px;border-radius:3px;cursor:pointer;font-family:var(--f-disp);font-size:16px;text-transform:uppercase;letter-spacing:.04em;">✕ Закрыть</button>
+  <div style="max-width:600px;margin:60px auto;padding:20px;">
+    <div id="payment-widget"></div>
+  </div>
+</div>
 
 <!-- ПАРТНЁРКА -->
 <section class="sec" id="partner">
@@ -1331,21 +1336,45 @@ footer{border-top:1px solid var(--line);padding-block:28px 110px;color:var(--tex
   window.addEventListener('resize',upd);
   upd();
 
-  // Открытие виджета оплаты
+  // Открытие модального окна оплаты
   var openPaymentBtn=document.getElementById('openPayment');
+  var navPaymentBtn=document.getElementById('navPayment');
+  var paymentModal=document.getElementById('paymentModal');
+  var closePaymentModal=document.getElementById('closePaymentModal');
   var paymentWidget=document.getElementById('payment-widget');
-  if(openPaymentBtn && paymentWidget){
-    openPaymentBtn.addEventListener('click',function(){
-      paymentWidget.style.display='block';
-      var script=document.getElementById('9502e84c8faf10f8c27b0055559484917bdc5ebc');
-      if(!script){
-        var newScript=document.createElement('script');
-        newScript.id='9502e84c8faf10f8c27b0055559484917bdc5ebc';
-        newScript.src='https://kodtestosterona.online/pl/lite/widget/script?id=1647100';
-        paymentWidget.appendChild(newScript);
-      }
+
+  function openPaymentModal(){
+    paymentModal.style.display='block';
+    document.body.style.overflow='hidden';
+    var script=document.getElementById('9502e84c8faf10f8c27b0055559484917bdc5ebc');
+    if(!script){
+      var newScript=document.createElement('script');
+      newScript.id='9502e84c8faf10f8c27b0055559484917bdc5ebc';
+      newScript.src='https://kodtestosterona.online/pl/lite/widget/script?id=1647100';
+      paymentWidget.appendChild(newScript);
+    }
+  }
+
+  function closePaymentModalFn(){
+    paymentModal.style.display='none';
+    document.body.style.overflow='';
+  }
+
+  if(openPaymentBtn) openPaymentBtn.addEventListener('click',openPaymentModal);
+  if(navPaymentBtn) navPaymentBtn.addEventListener('click',openPaymentModal);
+  if(closePaymentModal) closePaymentModal.addEventListener('click',closePaymentModalFn);
+  
+  // Закрытие по клику на фон
+  if(paymentModal){
+    paymentModal.addEventListener('click',function(e){
+      if(e.target===paymentModal) closePaymentModalFn();
     });
   }
+  
+  // Закрытие по Escape
+  document.addEventListener('keydown',function(e){
+    if(e.key==='Escape' && paymentModal.style.display==='block') closePaymentModalFn();
+  });
 })();
 </script>
 
