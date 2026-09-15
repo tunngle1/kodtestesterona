@@ -1073,7 +1073,12 @@ footer{border-top:1px solid var(--line);padding-block:28px 110px;color:var(--tex
         </div>
         <p class="cta-note">Отвечаем с 10:00 до 20:00 по Москве. Обычно — в течение часа.</p>
       </div>
-      <div id="payment-widget">
+      <div class="cta">
+        <div class="cta-row">
+          <button class="btn" id="openPayment"><span>Оплатить</span></button>
+        </div>
+      </div>
+      <div id="payment-widget" style="display:none;">
         <script id="9502e84c8faf10f8c27b0055559484917bdc5ebc" src="https://kodtestosterona.online/pl/lite/widget/script?id=1647100"></script>
       </div>
     </div>
@@ -1325,6 +1330,22 @@ footer{border-top:1px solid var(--line);padding-block:28px 110px;color:var(--tex
   window.addEventListener('scroll',upd,{passive:true});
   window.addEventListener('resize',upd);
   upd();
+
+  // Открытие виджета оплаты
+  var openPaymentBtn=document.getElementById('openPayment');
+  var paymentWidget=document.getElementById('payment-widget');
+  if(openPaymentBtn && paymentWidget){
+    openPaymentBtn.addEventListener('click',function(){
+      paymentWidget.style.display='block';
+      var script=document.getElementById('9502e84c8faf10f8c27b0055559484917bdc5ebc');
+      if(!script){
+        var newScript=document.createElement('script');
+        newScript.id='9502e84c8faf10f8c27b0055559484917bdc5ebc';
+        newScript.src='https://kodtestosterona.online/pl/lite/widget/script?id=1647100';
+        paymentWidget.appendChild(newScript);
+      }
+    });
+  }
 })();
 </script>
 
