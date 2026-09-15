@@ -1083,10 +1083,10 @@ footer{border-top:1px solid var(--line);padding-block:28px 110px;color:var(--tex
 </section>
 
 <!-- МОДАЛЬНОЕ ОКНО ОПЛАТЫ -->
-<div id="paymentModal" style="display:none;position:fixed;inset:0;z-index:100;background:rgba(8,8,10,0.95);backdrop-filter:blur(10px);overflow-y:auto;">
+<div id="paymentModal" style="opacity:0;visibility:hidden;position:fixed;inset:0;z-index:100;background:rgba(8,8,10,0.95);backdrop-filter:blur(10px);overflow-y:auto;transition:opacity 0.3s,visibility 0.3s;">
   <button id="closePaymentModal" style="position:fixed;top:20px;right:20px;z-index:101;background:var(--card);border:1px solid var(--line-hi);color:var(--text);padding:12px 16px;border-radius:3px;cursor:pointer;font-family:var(--f-disp);font-size:16px;text-transform:uppercase;letter-spacing:.04em;">✕ Закрыть</button>
   <div style="max-width:600px;margin:60px auto;padding:20px;">
-    <div id="payment-widget"></div>
+    <script id="9502e84c8faf10f8c27b0055559484917bdc5ebc" src="https://kodtestosterona.online/pl/lite/widget/script?id=1647100"></script>
   </div>
 </div>
 
@@ -1340,25 +1340,16 @@ footer{border-top:1px solid var(--line);padding-block:28px 110px;color:var(--tex
   var openPaymentBtn=document.getElementById('openPayment');
   var paymentModal=document.getElementById('paymentModal');
   var closePaymentModal=document.getElementById('closePaymentModal');
-  var paymentWidget=document.getElementById('payment-widget');
-  var scriptLoaded=false;
 
   function openPaymentModal(){
-    paymentModal.style.display='block';
+    paymentModal.style.opacity='1';
+    paymentModal.style.visibility='visible';
     document.body.style.overflow='hidden';
-    
-    if(!scriptLoaded){
-      var newScript=document.createElement('script');
-      newScript.id='9502e84c8faf10f8c27b0055559484917bdc5ebc';
-      newScript.src='https://kodtestosterona.online/pl/lite/widget/script?id=1647100';
-      newScript.async=true;
-      paymentWidget.appendChild(newScript);
-      scriptLoaded=true;
-    }
   }
 
   function closePaymentModalFn(){
-    paymentModal.style.display='none';
+    paymentModal.style.opacity='0';
+    paymentModal.style.visibility='hidden';
     document.body.style.overflow='';
   }
 
@@ -1374,7 +1365,7 @@ footer{border-top:1px solid var(--line);padding-block:28px 110px;color:var(--tex
   
   // Закрытие по Escape
   document.addEventListener('keydown',function(e){
-    if(e.key==='Escape' && paymentModal.style.display==='block') closePaymentModalFn();
+    if(e.key==='Escape' && paymentModal.style.visibility==='visible') closePaymentModalFn();
   });
 })();
 </script>
