@@ -113,6 +113,49 @@ h3{font-size:clamp(21px,4.4vw,26px);text-transform:none;line-height:1.2}
 .nav-links a:focus-visible{outline:2px solid var(--red);outline-offset:-2px}
 .nav .btn{display:none;padding:12px 18px;font-size:15px;box-shadow:none;animation:none;flex:0 0 auto}
 
+/* ===== БУРГЕР-МЕНЮ ===== */
+.nav-toggle{display:none;flex-direction:column;gap:5px;background:none;border:none;padding:8px;cursor:pointer;z-index:70}
+.nav-toggle span{width:24px;height:2px;background:var(--text);transition:all .3s ease;border-radius:1px}
+.nav-toggle.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+.nav-toggle.active span:nth-child(2){opacity:0}
+.nav-toggle.active span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+
+@media(min-width:769px){
+  .nav-logo,.nav .btn{display:flex}
+  .nav-toggle{display:none}
+}
+
+@media(max-width:768px){
+  .nav-toggle{display:flex}
+  .nav-logo{display:flex}
+  .nav-links{position:fixed;top:0;left:0;width:100%;height:100vh;background:rgba(8,8,10,.98);flex-direction:column;padding:80px 24px 24px;gap:8px;transform:translateX(-100%);transition:transform .3s ease;z-index:65;overflow-y:auto}
+  .nav-links.active{transform:translateX(0)}
+  .nav-links a{font-size:20px;padding:16px 20px;border:1px solid var(--line);border-radius:3px;background:var(--card)}
+  .nav .btn{display:none}
+  
+  /* Адаптив для других элементов */
+  .hero{padding-block:60px 40px}
+  .hero-in{flex-direction:column;gap:40px}
+  .hero-photo{width:100%;max-width:350px;margin:0 auto}
+  .sec{padding-block:60px}
+  .sec-head{margin-bottom:32px}
+  .card{padding:24px 20px}
+  .offer{padding:32px 24px}
+  .mess{grid-template-columns:1fr}
+  .mess-a{flex-direction:row;align-items:center;gap:16px;padding:16px}
+  .mess-go{display:flex}
+  .author{flex-direction:column;gap:24px}
+  .author-photo{flex:0 0 auto;width:100%;max-width:300px}
+  .author .body-col{flex:1}
+  .grid--3{grid-template-columns:1fr}
+  .reviews{grid-template-columns:1fr}
+  .review--wide{grid-column:1}
+  
+  /* Модальное окно оплаты на мобильных */
+  #paymentModal button#closePaymentModal{top:10px;right:10px;padding:10px 14px;font-size:14px}
+  #paymentModal>div:last-child{margin:40px auto;padding:16px}
+}
+
 /* ===== СЧЁТЧИК ДО ПОВЫШЕНИЯ ===== */
 .countdown{display:flex;align-items:center;gap:16px;border:2px solid var(--amber);border-radius:3px;background:linear-gradient(120deg,rgba(255,201,77,.14),var(--card) 64%);padding:16px 20px;align-self:flex-start;max-width:100%}
 .cd-n{font-family:var(--f-disp);font-size:clamp(42px,12vw,66px);font-weight:700;line-height:.88;color:var(--amber);font-variant-numeric:tabular-nums;flex:0 0 auto}
@@ -535,7 +578,12 @@ footer{border-top:1px solid var(--line);padding-block:28px 110px;color:var(--tex
 <nav class="nav" aria-label="Разделы страницы">
   <div class="nav-in">
     <span class="nav-logo"><i></i>EVS</span>
-    <div class="nav-links">
+    <button class="nav-toggle" id="navToggle" aria-label="Открыть меню">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <div class="nav-links" id="navLinks">
       <a href="#clock">12 минут</a>
       <a href="#symptoms">Симптомы</a>
       <a href="#komu">Кому</a>
@@ -1367,6 +1415,27 @@ footer{border-top:1px solid var(--line);padding-block:28px 110px;color:var(--tex
   document.addEventListener('keydown',function(e){
     if(e.key==='Escape' && paymentModal.style.visibility==='visible') closePaymentModalFn();
   });
+
+  // Бургер-меню
+  var navToggle=document.getElementById('navToggle');
+  var navLinks=document.getElementById('navLinks');
+  
+  if(navToggle && navLinks){
+    navToggle.addEventListener('click',function(){
+      navToggle.classList.toggle('active');
+      navLinks.classList.toggle('active');
+      document.body.style.overflow=navLinks.classList.contains('active')?'hidden':'';
+    });
+    
+    // Закрытие меню при клике на ссылку
+    navLinks.querySelectorAll('a').forEach(function(link){
+      link.addEventListener('click',function(){
+        navToggle.classList.remove('active');
+        navLinks.classList.remove('active');
+        document.body.style.overflow='';
+      });
+    });
+  }
 })();
 </script>
 
