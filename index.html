@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Код тестостерона 3.0</title>
+<meta name="description" content="Программа «Код тестостерона 3.0» — разбор ситуации, чек-ап в подарок первым 50 участникам.">
+<meta name="theme-color" content="#08080A">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Код тестостерона 3.0">
+<meta property="og:description" content="Программа «Код тестостерона 3.0» — разбор ситуации, чек-ап в подарок первым 50 участникам.">
+<meta property="og:image" content="img/evs-hero.jpg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2308080A'/%3E%3Ctext x='16' y='23' font-family='Arial' font-size='20' font-weight='bold' fill='%23FF3B42' text-anchor='middle'%3EТ%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Golos+Text:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap">
+<style>
+:root{
+  --ink:#08080A;--graphite:#101014;--card:#16161B;--card-hi:#1D1D23;
+  --line:#26262D;--line-hi:#3A3A45;
+  --text:#FFFFFF;--text-2:#D2D2D9;--text-3:#A3A5AF;
+  --red:#FF3B42;--red-hot:#FF6B70;--red-deep:#6A0F16;--red-bg:#1F1114;
+  --f-disp:"Oswald","Arial Narrow",sans-serif;
+  --f-body:"Golos Text","Helvetica Neue",Arial,sans-serif;
+  --f-mono:"JetBrains Mono",Consolas,monospace;
+  --max:1200px;--pad:22px;
+  color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--ink);color:var(--text);font-family:var(--f-body);font-size:20px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit}
+p{margin:0}
+ul,ol{margin:0;padding:0;list-style:none}
+.wrap{max-width:var(--max);margin:0 auto;padding-inline:var(--pad)}
+[id]{scroll-margin-top:80px}
+
+h1,h2,h3{font-family:var(--f-disp);margin:0;text-transform:uppercase;font-weight:600;line-height:1.04;text-wrap:balance}
+h1{font-size:clamp(40px,7.2vw,86px);letter-spacing:-.01em}
+h2{font-size:clamp(34px,5.4vw,62px)}
+h3{font-size:clamp(26px,3.4vw,40px)}
+h1 em,h2 em{font-style:normal;color:var(--red)}
+.lead{font-size:clamp(20px,2.2vw,25px);color:var(--text-2);max-width:62ch}
+.lead strong{color:var(--text)}
+.eyebrow{display:flex;align-items:center;gap:14px;font-family:var(--f-mono);font-size:14px;letter-spacing:.2em;text-transform:uppercase;color:var(--red)}
+.eyebrow::after{content:"";flex:1;max-width:280px;height:1px;background:linear-gradient(90deg,var(--line-hi),transparent)}
+.muted{color:var(--text-3)}
+.sec{position:relative;padding-block:96px;border-top:1px solid var(--line)}
+.sec--g{background:var(--graphite)}
+.head{display:flex;flex-direction:column;gap:18px;margin-bottom:40px}
+
+/* buttons */
+.btn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:64px;padding:0 34px;background:var(--red);color:#fff;text-decoration:none;font-family:var(--f-disp);font-weight:700;font-size:clamp(19px,2vw,22px);text-transform:uppercase;letter-spacing:.04em;border:0;border-radius:2px;cursor:pointer;overflow:hidden;box-shadow:0 16px 44px -18px rgba(255,59,66,.9),inset 0 1px 0 rgba(255,255,255,.16);transition:background .18s,transform .18s,box-shadow .18s;text-align:center;line-height:1.15}
+.btn::after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,transparent 34%,rgba(255,255,255,.28) 50%,transparent 66%);transform:translateX(-130%)}
+.btn:hover{background:var(--red-hot);transform:translateY(-2px)}
+.btn:focus-visible{outline:2px solid #fff;outline-offset:3px}
+.btn--ghost{background:transparent;border:1px solid var(--line-hi);box-shadow:none}
+.btn--ghost:hover{background:var(--card-hi);border-color:var(--red)}
+.btn--sm{min-height:48px;padding:0 20px;font-size:17px;box-shadow:none}
+.btns{display:flex;flex-wrap:wrap;gap:14px}
+.note{font-size:17px;color:var(--text-3)}
+
+/* nav */
+.progress{position:fixed;top:0;left:0;height:3px;width:100%;transform:scaleX(0);transform-origin:0 50%;background:linear-gradient(90deg,var(--red-deep),var(--red),var(--red-hot));z-index:90}
+.nav{position:sticky;top:0;z-index:70;background:rgba(8,8,10,.94);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.nav-in{max-width:var(--max);margin:0 auto;padding:12px var(--pad);display:flex;align-items:center;justify-content:space-between;gap:16px}
+.logo{font-family:var(--f-disp);font-weight:700;font-size:22px;letter-spacing:.12em;text-transform:uppercase;display:flex;align-items:center;gap:10px}
+.logo i{width:10px;height:10px;border-radius:50%;background:var(--red);box-shadow:0 0 14px var(--red)}
+.logo b{color:var(--red)}
+.nav-r{display:flex;align-items:center;gap:18px}
+.nav-date{font-family:var(--f-mono);font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-3)}
+
+/* hero */
+.hero{position:relative;overflow:hidden;padding-block:80px 72px;isolation:isolate}
+.hero-bg{position:absolute;inset:0;z-index:-1;pointer-events:none}
+.hero-bg .grid{position:absolute;inset:-20% -10% 0 -10%;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:64px 64px;opacity:.32;-webkit-mask-image:radial-gradient(90% 70% at 64% 22%,#000,transparent 78%);mask-image:radial-gradient(90% 70% at 64% 22%,#000,transparent 78%)}
+.hero-bg .glow{position:absolute;top:-28%;right:-20%;width:90vw;height:90vw;max-width:900px;max-height:900px;background:radial-gradient(circle,rgba(224,31,38,.32),rgba(224,31,38,.08) 42%,transparent 68%);filter:blur(12px)}
+.hero-in{display:flex;flex-wrap:wrap;gap:56px;align-items:center}
+.hero-copy{flex:999 1 560px;min-width:0;display:flex;flex-direction:column;gap:26px}
+.gift{align-self:flex-start;display:inline-flex;align-items:center;gap:12px;padding:12px 18px;border:2px solid var(--red);border-radius:2px;background:linear-gradient(120deg,rgba(255,59,66,.18),var(--card) 70%);font-family:var(--f-disp);font-weight:600;font-size:clamp(18px,2vw,22px);text-transform:uppercase;letter-spacing:.03em}
+.gift svg{flex:none;color:var(--red)}
+.start{font-family:var(--f-disp);font-size:clamp(22px,2.4vw,28px);font-weight:500;border-left:3px solid var(--red);padding-left:18px;line-height:1.25}
+.hero-photo{flex:1 1 360px;min-width:0;max-width:440px;margin-inline:auto;position:relative}
+.hero-photo .halo{position:absolute;inset:-18% -16%;background:radial-gradient(circle at 52% 40%,rgba(224,31,38,.42),rgba(224,31,38,.1) 44%,transparent 68%);filter:blur(30px);animation:breathe 7s ease-in-out infinite}
+.hero-photo .frame{position:absolute;inset:-12px;border:1px solid var(--line-hi);border-radius:3px}
+.hero-photo .frame::before,.hero-photo .frame::after{content:"";position:absolute;width:18px;height:18px;border:2px solid var(--red)}
+.hero-photo .frame::before{top:-1px;left:-1px;border-right:0;border-bottom:0}
+.hero-photo .frame::after{bottom:-1px;right:-1px;border-left:0;border-top:0}
+.hero-photo img{position:relative;width:100%;border-radius:2px;filter:grayscale(.3) contrast(1.08)}
+.hero-photo .veil{position:absolute;inset:0;background:linear-gradient(to top,var(--ink) 2%,rgba(8,8,10,.4) 26%,transparent 56%)}
+.hero-photo .tag{position:absolute;left:-2px;bottom:22px;background:rgba(8,8,10,.9);border:1px solid var(--line-hi);border-left:3px solid var(--red);padding:10px 14px;font-family:var(--f-mono);font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-2);line-height:1.5}
+.hero-photo .tag b{display:block;color:#fff;font-family:var(--f-disp);font-size:18px;letter-spacing:.08em}
+
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:16px;margin-top:64px}
+.stat{border:1px solid var(--line-hi);border-top:3px solid var(--red);border-radius:3px;background:var(--card);padding:28px 26px;display:flex;flex-direction:column;gap:10px;transition:transform .25s,background .25s}
+.stat:hover{transform:translateY(-4px);background:var(--card-hi)}
+.stat-n{font-family:var(--f-disp);font-size:clamp(48px,5vw,64px);font-weight:700;line-height:.95;color:var(--red);font-variant-numeric:tabular-nums}
+.stat-d{color:var(--text-2);font-size:19px}
+
+/* ticker */
+.ticker{background:var(--red);overflow:hidden;border-block:1px solid #000}
+.ticker-in{display:flex;width:max-content;animation:slide 40s linear infinite}
+.ticker span{font-family:var(--f-disp);font-weight:600;text-transform:uppercase;letter-spacing:.1em;font-size:17px;padding-block:14px;white-space:nowrap;display:flex;align-items:center}
+.ticker span::after{content:"●";font-size:8px;opacity:.7;margin-inline:28px}
+
+/* segments */
+.tabs{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:24px}
+.tab{min-height:60px;padding:0 26px;border-radius:2px;border:2px solid var(--line-hi);background:transparent;color:var(--text);font-family:var(--f-disp);font-weight:600;font-size:clamp(18px,1.9vw,22px);text-transform:uppercase;letter-spacing:.03em;cursor:pointer;transition:background .2s,border-color .2s,color .2s,transform .2s}
+.tab:hover{border-color:var(--red);transform:translateY(-2px)}
+.tab[aria-selected="true"]{background:var(--red);border-color:var(--red);color:#fff}
+.tab:focus-visible{outline:2px solid #fff;outline-offset:3px}
+.panel{border:1px solid var(--line-hi);border-left:4px solid var(--red);border-radius:3px;background:var(--card);padding:clamp(28px,4vw,48px);display:flex;flex-direction:column;gap:22px;animation:panelIn .45s cubic-bezier(.2,.7,.2,1)}
+.panel[hidden]{display:none}
+.panel-h{font-family:var(--f-disp);font-size:clamp(28px,3.4vw,42px);font-weight:600;line-height:1.12}
+.pains{display:flex;flex-direction:column;gap:14px}
+.pains li{position:relative;padding-left:34px;font-size:clamp(19px,2vw,22px);color:var(--text-2)}
+.pains li::before{content:"";position:absolute;left:0;top:.6em;width:18px;height:2px;background:var(--red)}
+.punch{font-family:var(--f-disp);font-size:clamp(24px,2.8vw,32px);font-weight:600;text-transform:uppercase;line-height:1.15}
+.big-say{display:flex;flex-direction:column;gap:12px;margin-top:44px}
+.big-say p:first-child{font-size:clamp(20px,2.2vw,25px);color:var(--text-2)}
+.big-say p:last-child{font-family:var(--f-disp);font-size:clamp(30px,4vw,48px);font-weight:600;text-transform:uppercase;line-height:1.1}
+.big-say em{font-style:normal;color:var(--red)}
+
+/* why */
+.why{display:flex;flex-wrap:wrap;gap:56px}
+.why-l{flex:999 1 560px;min-width:0;display:flex;flex-direction:column;gap:24px}
+.why-r{flex:1 1 360px;min-width:0;display:flex;flex-direction:column;gap:16px}
+.clock{display:flex;align-items:baseline;gap:18px;flex-wrap:wrap}
+.clock .n{font-family:var(--f-disp);font-size:clamp(96px,14vw,180px);font-weight:700;line-height:.84;color:var(--red);text-shadow:0 0 60px rgba(224,31,38,.35)}
+.clock .t{font-family:var(--f-disp);font-size:clamp(24px,3vw,36px);text-transform:uppercase;font-weight:600;line-height:1.1;max-width:14ch}
+.quote{position:relative;padding:24px 26px 24px 58px;border:1px solid var(--line);border-radius:3px;background:var(--card);font-size:clamp(20px,2vw,23px);font-weight:600;line-height:1.45}
+.quote::before{content:"“";position:absolute;left:18px;top:8px;font-family:var(--f-disp);font-size:56px;color:var(--red);line-height:1}
+.callout{border:1px solid var(--red);border-radius:3px;background:linear-gradient(120deg,rgba(255,59,66,.16),var(--card) 64%);padding:26px 28px;font-size:clamp(20px,2.1vw,24px)}
+.callout b{color:var(--red-hot)}
+
+/* changes */
+.changes{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:16px}
+.chg{border:1px solid var(--line);border-radius:3px;background:var(--ink);padding:28px 26px;display:flex;flex-direction:column;gap:16px;transition:border-color .25s,transform .25s}
+.chg:hover{border-color:var(--line-hi);transform:translateY(-4px)}
+.chg-row{display:flex;gap:14px;align-items:flex-start}
+.chg-l{flex:none;font-family:var(--f-mono);font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding-top:5px;width:72px}
+.chg-was{color:var(--text-3);font-size:19px}
+.chg-will{font-weight:700;font-size:20px}
+.chg hr{border:0;height:1px;background:var(--line);margin:0}
+.doctor{margin-top:40px;font-family:var(--f-disp);font-size:clamp(26px,3vw,36px);font-weight:600;line-height:1.2;max-width:30ch}
+
+/* program */
+.weeks{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.week{border:1px solid var(--line);border-radius:3px;background:var(--card);padding:28px 24px;display:flex;flex-direction:column;gap:12px;position:relative;overflow:hidden;transition:transform .25s,background .25s}
+.week::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--red);transform:scaleY(0);transform-origin:top;transition:transform .35s}
+.week:hover{transform:translateY(-4px);background:var(--card-hi)}
+.week:hover::before{transform:scaleY(1)}
+.week-n{font-family:var(--f-mono);font-size:14px;letter-spacing:.16em;text-transform:uppercase;color:var(--red);font-weight:700}
+.week-t{font-family:var(--f-disp);font-size:26px;font-weight:600;text-transform:uppercase;line-height:1.12}
+.week p{color:var(--text-2);font-size:18px}
+.forc{margin:28px 0 0;border:1px solid var(--line-hi);border-left:4px solid var(--red);border-radius:3px;background:var(--card);padding:26px 28px;font-size:clamp(19px,2vw,22px)}
+.modules{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:18px;align-items:start;margin-top:28px}
+.mod{border:1px solid var(--line);border-top:4px solid var(--red);border-radius:3px;background:var(--card)}
+.mod-h{padding:24px 24px 20px;border-bottom:1px solid var(--line);display:flex;flex-direction:column;gap:8px}
+.mod-n{font-family:var(--f-mono);font-size:13px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--red)}
+.mod-t{font-family:var(--f-disp);font-size:30px;font-weight:600;text-transform:uppercase;line-height:1.08}
+.mod ol{padding:6px 24px 14px}
+.mod li{display:flex;gap:14px;padding:18px 0;border-bottom:1px solid var(--line);transition:padding-left .2s}
+.mod li:last-child{border-bottom:0}
+.mod li:hover{padding-left:6px}
+.mod li>span:first-child{flex:none;font-family:var(--f-mono);font-size:15px;font-weight:700;color:var(--red);padding-top:3px}
+.les-t{font-weight:700;font-size:20px;line-height:1.35;display:block}
+.les-d{color:var(--text-2);font-size:17px;line-height:1.5;display:block;margin-top:4px}
+.new{display:inline-block;vertical-align:middle;margin-left:8px;font-family:var(--f-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;background:var(--red);color:#fff;padding:3px 8px;border-radius:2px}
+.bonus{margin-top:18px;display:flex;gap:16px;align-items:flex-start;padding:22px 24px;border:1px dashed var(--red);border-radius:3px;font-size:19px}
+.bonus span:first-child{flex:none;font-family:var(--f-mono);font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--red);padding-top:4px}
+.incl-wrap{display:flex;flex-wrap:wrap;gap:44px;margin-top:56px}
+.incl{flex:999 1 560px;min-width:0;display:flex;flex-direction:column;gap:14px}
+.incl li{display:flex;gap:14px;align-items:flex-start;font-size:20px}
+.incl li svg{flex:none;margin-top:4px;color:var(--red)}
+.incl li.gift-li{padding:18px 20px;border:2px solid var(--red);border-radius:3px;background:var(--red-bg)}
+.incl li.gift-li b{color:var(--red-hot)}
+.city{flex:1 1 320px;min-width:0;align-self:flex-start;border:1px solid var(--line-hi);border-top:3px solid var(--red);border-radius:3px;background:var(--card);padding:30px;display:flex;flex-direction:column;gap:14px}
+.city b{font-family:var(--f-disp);font-size:64px;line-height:.95;color:var(--red)}
+
+/* author */
+.author{display:flex;flex-wrap:wrap;gap:56px;align-items:center}
+.author-photo{flex:1 1 360px;min-width:0;border:1px solid var(--line-hi);border-radius:3px;overflow:hidden}
+.author-photo img{width:100%;filter:grayscale(.35) contrast(1.05);transition:transform 1.3s cubic-bezier(.2,.7,.2,1),filter .7s}
+.author-photo:hover img{transform:scale(1.04);filter:none}
+.author-copy{flex:999 1 560px;min-width:0;display:flex;flex-direction:column;gap:20px}
+.author-copy p{color:var(--text-2);font-size:clamp(19px,2vw,22px)}
+.author-copy p.strong{color:var(--text);font-weight:700}
+.nums{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:48px}
+.num{border:1px solid var(--line);border-radius:3px;background:var(--ink);padding:24px}
+.num b{display:block;font-family:var(--f-disp);font-size:clamp(40px,4vw,52px);font-weight:700;line-height:1;font-variant-numeric:tabular-nums}
+.num span{color:var(--text-3);font-size:17px}
+.sasha{margin-top:24px;border:1px solid var(--line-hi);border-radius:3px;background:var(--ink);padding:clamp(28px,4vw,44px)}
+.sasha blockquote{margin:0;font-size:clamp(22px,2.5vw,30px);font-weight:600;line-height:1.4}
+.sasha figcaption{margin-top:16px;color:var(--red);font-family:var(--f-mono);letter-spacing:.14em;text-transform:uppercase;font-size:14px;font-weight:700}
+
+/* reviews */
+.who{margin-top:72px;display:flex;flex-direction:column;gap:14px}
+.rev-main{margin-top:28px;border:1px solid var(--red);border-radius:3px;background:var(--red-bg);padding:clamp(28px,4vw,48px);display:flex;flex-direction:column;gap:18px}
+.rev-main .tagr{font-family:var(--f-mono);font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--red-hot)}
+.rev-main blockquote{margin:0;font-size:clamp(20px,2.2vw,25px);line-height:1.6;color:var(--text-2);display:flex;flex-direction:column;gap:14px}
+.hl{color:#fff;font-weight:700;background:linear-gradient(transparent 62%,rgba(224,31,38,.38) 0)}
+.revs{margin-top:16px;display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:16px}
+.rev{margin:0;border:1px solid var(--line);border-left:3px solid var(--red);border-radius:3px;background:var(--ink);padding:28px 26px;display:flex;flex-direction:column;gap:16px;transition:transform .25s,background .25s}
+.rev:hover{transform:translateY(-4px);background:var(--card)}
+.rev blockquote{margin:0;color:var(--text-2);font-size:19px;line-height:1.6}
+.rev figcaption,.rev-main figcaption{display:flex;align-items:center;gap:10px;font-family:var(--f-mono);font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-3);border-top:1px solid var(--line);padding-top:14px}
+.rev figcaption i,.rev-main figcaption i{width:8px;height:8px;border-radius:50%;background:var(--red);box-shadow:0 0 10px var(--red)}
+
+/* price */
+.anchor{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+.anc{border:1px solid var(--line);border-radius:3px;background:var(--card);padding:26px}
+.anc span{display:block;color:var(--text-3);font-size:18px}
+.anc b{display:block;font-family:var(--f-disp);font-size:clamp(30px,3vw,38px);font-weight:700;margin-top:6px}
+.anc--hi{border:2px solid var(--red);background:var(--red-bg)}
+.anc--hi b{color:var(--red-hot)}
+.plans{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px;margin-top:48px;align-items:stretch}
+.plan{border:1px solid var(--line-hi);border-radius:3px;background:var(--card);padding:34px 30px;display:flex;flex-direction:column;gap:18px}
+.plan--main{border:2px solid var(--red);background:linear-gradient(160deg,#24111A,var(--card) 50%);box-shadow:0 40px 90px -50px rgba(255,59,66,.7);transform:translateY(-8px)}
+.plan-badge{align-self:flex-start;background:var(--red);color:#fff;font-family:var(--f-mono);font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:6px 12px;border-radius:2px}
+.plan-n{font-family:var(--f-disp);font-size:32px;font-weight:600;text-transform:uppercase}
+.plan-p{font-family:var(--f-disp);font-size:clamp(48px,5vw,60px);font-weight:700;line-height:.95}
+.plan-r{color:var(--text-3);font-size:17px;margin-top:6px}
+.plan ul{display:flex;flex-direction:column;gap:12px;flex-grow:1}
+.plan li{display:flex;gap:12px;align-items:flex-start;font-size:19px}
+.plan li svg{flex:none;margin-top:5px}
+.plan li.no{color:var(--text-3)}
+.calc{padding:14px 16px;border-radius:2px;background:rgba(255,59,66,.12);border:1px solid rgba(255,59,66,.4);font-size:17px;color:var(--text)}
+.now{margin-top:44px;border:1px solid var(--line-hi);border-radius:3px;background:var(--card);padding:clamp(28px,4vw,44px)}
+.now-g{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:28px;margin-top:22px}
+.now-g strong{display:block;font-size:21px;margin-bottom:8px}
+.now-g span{color:var(--text-2);font-size:18px}
+
+/* faq */
+.faq{display:flex;flex-direction:column;gap:12px;max-width:920px}
+details{background:var(--ink);border:1px solid var(--line);border-radius:3px;transition:border-color .2s,background .2s}
+details[open]{border-color:var(--line-hi);background:var(--card)}
+summary{cursor:pointer;list-style:none;padding:24px 64px 24px 26px;position:relative;font-family:var(--f-disp);font-size:clamp(21px,2.2vw,26px);font-weight:500;line-height:1.25}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"";position:absolute;right:24px;top:calc(50% - 1px);width:16px;height:2px;background:var(--red)}
+summary::before{content:"";position:absolute;right:31px;top:calc(50% - 8px);width:2px;height:16px;background:var(--red);transition:transform .22s,opacity .22s}
+details[open] summary::before{opacity:0;transform:rotate(90deg)}
+summary:focus-visible{outline:2px solid var(--red);outline-offset:-2px}
+.faq-b{padding:0 26px 26px;color:var(--text-2);font-size:19px;animation:panelIn .35s ease}
+
+/* final */
+.final{position:relative;overflow:hidden;padding-block:120px;border-top:1px solid var(--line);text-align:left;isolation:isolate}
+.final::before{content:"";position:absolute;bottom:-40%;left:50%;translate:-50% 0;width:120vw;max-width:1200px;height:700px;background:radial-gradient(ellipse,rgba(224,31,38,.25),transparent 64%);filter:blur(30px);z-index:-1;animation:breathe 9s ease-in-out infinite}
+.final-in{display:flex;flex-direction:column;gap:26px;align-items:flex-start}
+.mess{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;width:100%;max-width:900px}
+.mess a,.mess button{font:inherit;color:inherit;text-align:left;cursor:pointer;width:100%;display:flex;align-items:center;gap:16px;padding:20px 22px;border:1px solid var(--line-hi);border-radius:3px;background:var(--ink);text-decoration:none;transition:border-color .2s,background .2s,transform .2s}
+.mess a:hover,.mess button:hover{background:var(--card-hi);transform:translateY(-3px)}
+.mess .ic{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;flex:none;border:1px solid var(--line-hi)}
+.mess b{font-family:var(--f-disp);font-size:22px;font-weight:600;text-transform:uppercase;letter-spacing:.05em}
+.mess .go{margin-left:auto;color:var(--text-3);transition:transform .2s,color .2s}
+.mess a:hover .go,.mess button:hover .go{color:var(--red);transform:translateX(5px)}
+.tg .ic{color:#2AABEE}.tg:hover{border-color:#2AABEE!important}
+.wa .ic{color:#25D366}.wa:hover{border-color:#25D366!important}
+.mx .ic{color:#A78BFA}.mx:hover{border-color:#A78BFA!important}
+
+footer{border-top:1px solid var(--line);padding-block:36px 120px;color:var(--text-3);font-size:15px;line-height:1.7}
+
+/* sticky mobile bar */
+.sticky{position:fixed;left:0;right:0;bottom:0;z-index:65;background:rgba(8,8,10,.95);border-top:1px solid var(--line);backdrop-filter:blur(10px);padding:10px 14px calc(10px + env(safe-area-inset-bottom));display:flex;align-items:center;gap:12px;transform:translateY(115%);transition:transform .3s}
+.sticky.on{transform:none}
+.sticky-t{font-family:var(--f-disp);font-size:18px;font-weight:600;line-height:1.1;text-transform:uppercase}
+.sticky-t small{display:block;font-family:var(--f-mono);font-size:12px;color:var(--red);letter-spacing:.06em;margin-top:3px}
+.sticky .btn{flex:1;min-height:52px;padding:0 14px;font-size:17px;box-shadow:none}
+@media (min-width:900px){.sticky{display:none}}
+
+/* motion */
+@keyframes up{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
+@keyframes breathe{0%,100%{opacity:.75;transform:scale(1)}50%{opacity:1;transform:scale(1.06)}}
+@keyframes slide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes sweep{0%{transform:translateX(-120%)}60%,100%{transform:translateX(120%)}}
+@keyframes shine{0%,72%{transform:translateX(-130%)}100%{transform:translateX(130%)}}
+@keyframes panelIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(255,59,66,.55)}50%{box-shadow:0 0 0 10px rgba(255,59,66,0)}}
+.btn:not(.btn--ghost)::after{animation:shine 4.5s ease-in-out infinite}
+.gift{animation:pulse 2.6s ease-in-out infinite}
+.hero-copy>*{animation:up .8s cubic-bezier(.2,.7,.2,1) both}
+.hero-copy>*:nth-child(2){animation-delay:.08s}
+.hero-copy>*:nth-child(3){animation-delay:.16s}
+.hero-copy>*:nth-child(4){animation-delay:.24s}
+.hero-copy>*:nth-child(5){animation-delay:.32s}
+.hero-copy>*:nth-child(6){animation-delay:.4s}
+.hero-copy>*:nth-child(7){animation-delay:.48s}
+.hero-photo{animation:up 1s .2s cubic-bezier(.2,.7,.2,1) both}
+.js .rv{opacity:0;transform:translateY(32px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}
+.js .rv.in{opacity:1;transform:none}
+.js .stagger>.rv:nth-child(2){transition-delay:.08s}
+.js .stagger>.rv:nth-child(3){transition-delay:.16s}
+.js .stagger>.rv:nth-child(4){transition-delay:.24s}
+.js .stagger>.rv:nth-child(5){transition-delay:.32s}
+.js .stagger>.rv:nth-child(6){transition-delay:.4s}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .js .rv{opacity:1;transform:none}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+<div class="progress" id="progress" aria-hidden="true"></div>
+
+<header class="nav">
+  <div class="nav-in">
+    <div class="logo"><i></i>Код тестостерона <b>3.0</b></div>
+    <div class="nav-r">
+      <span class="nav-date">Старт 30 ноября</span>
+      <a class="btn btn--ghost btn--sm" href="https://t.me/Evseev_kodtestesterona" target="_blank" rel="noopener">Разобрать мою ситуацию</a>
+    </div>
+  </div>
+</header>
+
+<main>
+<!-- 1. HERO -->
+<section class="hero">
+  <div class="hero-bg"><div class="grid"></div><div class="glow"></div></div>
+  <div class="wrap hero-in">
+    <div class="hero-copy">
+      <div class="gift">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="8" width="18" height="13" rx="1"/><path d="M12 8v13M3 12h18M12 8c-2-4-6-4-6-1s6 1 6 1zm0 0c2-4 6-4 6-1s-6 1-6 1z"/></svg>
+        16 анализов в подарок первым 50 · отдельно от 15 000 ₽
+      </div>
+      <h1>Сдай 16 анализов в подарок и узнай, куда ушли <em>силы, желание и форма</em></h1>
+      <p class="lead">Первые 50 участников тарифов «Основной» и VIP получают полный мужской чек-ап в подарок. Отдельно он стоит от 15 000 ₽. Вместе с Александром Евсеевым разберёшь свои цифры и поймёшь, что делать, чтобы <strong>вернуть либидо, энергию и тело.</strong> Или поднять их выше, чем было.</p>
+      <p class="start">Старт 30 ноября.<br>Последний поток в этом году.</p>
+      <div class="btns">
+        <a class="btn" href="https://t.me/Evseev_kodtestesterona" target="_blank" rel="noopener">Разобрать мою ситуацию</a>
+        <a class="btn btn--ghost" href="#price">Забрать место с чек-апом</a>
+      </div>
+      <p class="note">Напиши, что тебя беспокоит. Сначала поймём, подходит ли тебе курс, и только потом поговорим об оплате.</p>
+    </div>
+    <div class="hero-photo">
+      <div class="halo" aria-hidden="true"></div>
+      <div class="frame" aria-hidden="true"></div>
+      <img src="img/evs-hero.jpg" alt="Александр Евсеев">
+      <div class="veil" aria-hidden="true"></div>
+      <div class="tag"><b>Александр Евсеев</b>20 лет в спорте и мужском здоровье</div>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="stats stagger">
+      <div class="stat rv"><div class="stat-n">15 000 ₽</div><div class="stat-d">стоит чек-ап, который первые 50 участников получают в подарок</div></div>
+      <div class="stat rv"><div class="stat-n">16 показателей</div><div class="stat-d">гормоны, кровь, печень, липиды. Всё, что отвечает за либидо, силы и живот</div></div>
+      <div class="stat rv"><div class="stat-n">100+ мужчин</div><div class="stat-d">уже прошли программу и разобрались в своих анализах</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="ticker" aria-hidden="true"><div class="ticker-in">
+  <span>Либидо</span><span>Энергия</span><span>Живот уходит</span><span>16 анализов в подарок</span><span>Сила в зале</span><span>Решение на своих цифрах</span><span>Старт 30 ноября</span>
+  <span>Либидо</span><span>Энергия</span><span>Живот уходит</span><span>16 анализов в подарок</span><span>Сила в зале</span><span>Решение на своих цифрах</span><span>Старт 30 ноября</span>
+</div></div>
+
+<!-- 2. RECOGNITION -->
+<section class="sec sec--g" id="who">
+  <div class="wrap">
+    <div class="head rv"><div class="eyebrow">Узнай себя</div><h2>Ты сейчас где?</h2></div>
+    <div class="tabs rv" role="tablist" aria-label="Выбери свою ситуацию">
+      <button class="tab" role="tab" id="t-a" aria-controls="p-a" aria-selected="false">Я уже на терапии</button>
+      <button class="tab" role="tab" id="t-b" aria-controls="p-b" aria-selected="true">Решаю, нужна ли она</button>
+      <button class="tab" role="tab" id="t-c" aria-controls="p-c" aria-selected="false">Всё нормально, хочу больше</button>
+    </div>
+    <div class="panel" role="tabpanel" id="p-a" aria-labelledby="t-a" hidden>
+      <div class="panel-h">Первый год был огонь. Потом что-то пошло не так.</div>
+      <p class="lead">Сил через край, в зале рос, желание как в 20. А сейчас:</p>
+      <ul class="pains">
+        <li>либидо снова на нуле, хотя дозировка та же;</li>
+        <li>утром встаёшь разбитым, к обеду уже не работник;</li>
+        <li>живот вернулся, хотя ешь и тренируешься как раньше;</li>
+        <li>давление, прыщи, гематокрит растёт, а что с этим делать, никто не объясняет;</li>
+        <li>врач говорит «колите дальше», чат говорит «добавь вот это»;</li>
+        <li>начал курсы в 20 с небольшим, а теперь без них не чувствуешь себя мужиком.</li>
+      </ul>
+      <p class="punch">И каждый раз ты меняешь схему наугад.</p>
+    </div>
+    <div class="panel" role="tabpanel" id="p-b" aria-labelledby="t-b">
+      <div class="panel-h">Тебе 27 или 47, а ощущение одно: как будто тумблер выключили.</div>
+      <ul class="pains">
+        <li>секса хочется всё реже, а когда хочется, не всегда получается;</li>
+        <li>к трём часам дня голова ватная, кофе уже не спасает;</li>
+        <li>растёт живот, хотя в зале ты не пропускаешь;</li>
+        <li>второй год стоишь на одних и тех же весах;</li>
+        <li>утренней эрекции давно нет;</li>
+        <li>тебе ещё нет 30, а сил меньше, чем у отца.</li>
+      </ul>
+      <p class="lead">Эндокринолог посмотрел анализы и сказал: «Вы здоровы, можете идти». А здоровым ты себя не чувствуешь. И уже полгода читаешь форумы и думаешь, не сесть ли на терапию самому.</p>
+    </div>
+    <div class="panel" role="tabpanel" id="p-c" aria-labelledby="t-c" hidden>
+      <div class="panel-h">Ты в форме. Но хочешь знать, что происходит внутри, а не гадать.</div>
+      <ul class="pains">
+        <li>тренируешься годами, а результат упёрся в потолок;</li>
+        <li>хочешь суше, сильнее, выносливее, но без вреда для здоровья;</li>
+        <li>анализы сдаёшь, но не понимаешь, какие цифры двигать и как;</li>
+        <li>в чатах каждый советует своё, а отвечать здоровьем тебе.</li>
+      </ul>
+      <p class="punch">Ты не болеешь. Ты хочешь управлять собой по цифрам.</p>
+    </div>
+    <div class="big-say rv">
+      <p>Большинство мужчин терпят так годами. Списывают на возраст, работу, «так у всех». Хотя курс уже покупают мужчины от 27 лет.</p>
+      <p>Это не возраст. Это цифры, которые тебе никто <em>не объяснил.</em></p>
+    </div>
+    <div class="btns rv" style="margin-top:36px"><a class="btn" href="https://t.me/Evseev_kodtestesterona" target="_blank" rel="noopener">Разобрать мою ситуацию</a></div>
+  </div>
+</section>
+
+<!-- 3. WHY -->
+<section class="sec">
+  <div class="wrap why">
+    <div class="why-l">
+      <div class="eyebrow rv">Почему так получилось</div>
+      <h2 class="rv">Тебе не помогли не потому, что всё <em>безнадёжно</em></h2>
+      <div class="clock rv"><span class="n">12</span><span class="t">минут длится приём эндокринолога</span></div>
+      <p class="lead rv">Смотрят общий тестостерон, видят «в норме» и отпускают. А желание, силы и живот зависят не от одной цифры. Они зависят от того, как вместе работают <strong>гормоны, печень, кровь и обмен веществ.</strong></p>
+      <div class="callout rv"><b>Чек-ап на 16 показателей показывает всю картину целиком.</b> Поэтому первым 50 участникам мы дарим его: с него начинается всё остальное.</div>
+    </div>
+    <div class="why-r stagger">
+      <div class="eyebrow rv">Так говорили мужчины первого потока</div>
+      <div class="quote rv">«Эндокринолог посмотрел и сказал: вы здоровы, можете идти».</div>
+      <div class="quote rv">«Первый год как на наркотиках. Потом полезли побочки».</div>
+    </div>
+  </div>
+</section>
+
+<!-- 4. CHANGES -->
+<section class="sec sec--g">
+  <div class="wrap">
+    <div class="head rv"><div class="eyebrow">Что изменится</div><h2>Через месяц ты перестанешь <em>терпеть и гадать</em></h2></div>
+    <div class="changes stagger">
+      <div class="chg rv"><div class="chg-row"><span class="chg-l muted">Было</span><span class="chg-was">Секса хочется всё реже, а иногда и не получается</span></div><hr><div class="chg-row"><span class="chg-l" style="color:var(--red)">Станет</span><span class="chg-will">Возвращаешь желание и понимаешь, от чего зависит эрекция</span></div></div>
+      <div class="chg rv"><div class="chg-row"><span class="chg-l muted">Было</span><span class="chg-was">К обеду нет сил, работа идёт через силу</span></div><hr><div class="chg-row"><span class="chg-l" style="color:var(--red)">Станет</span><span class="chg-will">Встаёшь бодрым, хватает на работу, зал и близких</span></div></div>
+      <div class="chg rv"><div class="chg-row"><span class="chg-l muted">Было</span><span class="chg-was">Растёт живот, хотя ешь и тренируешься как раньше</span></div><hr><div class="chg-row"><span class="chg-l" style="color:var(--red)">Станет</span><span class="chg-will">Видишь, что копит жир именно у тебя, и убираешь причину</span></div></div>
+      <div class="chg rv"><div class="chg-row"><span class="chg-l muted">Было</span><span class="chg-was">Второй год думаешь, нужна ли ГЗТ</span></div><hr><div class="chg-row"><span class="chg-l" style="color:var(--red)">Станет</span><span class="chg-will">Решаешь на своих цифрах. Не садишься зря и не упускаешь, если нужна</span></div></div>
+      <div class="chg rv"><div class="chg-row"><span class="chg-l muted">Было</span><span class="chg-was">На терапии эффект ушёл, лезут побочки</span></div><hr><div class="chg-row"><span class="chg-l" style="color:var(--red)">Станет</span><span class="chg-will">Возвращаешь эффект первого года и держишь кровь, сердце и фертильность под контролем</span></div></div>
+      <div class="chg rv"><div class="chg-row"><span class="chg-l muted">Было</span><span class="chg-was">Форма стоит, в чатах десять схем</span></div><hr><div class="chg-row"><span class="chg-l" style="color:var(--red)">Станет</span><span class="chg-will">Знаешь, какие показатели тормозят рост, и двигаешь их</span></div></div>
+    </div>
+    <p class="doctor rv">И в кабинет врача ты приходишь с картиной, а не с вопросом «а это нормально?». 12 минут становится достаточно.</p>
+    <div class="btns rv" style="margin-top:32px"><a class="btn" href="https://t.me/Evseev_kodtestesterona" target="_blank" rel="noopener">Разобрать мою ситуацию</a></div>
+  </div>
+</section>
+
+<!-- 5. PROGRAM -->
+<section class="sec" id="program">
+  <div class="wrap">
+    <div class="head rv"><div class="eyebrow">Как это работает</div><h2>Начинаешь с подарка: <em>16 анализов</em>, которые покажут, что с тобой</h2>
+    <p class="lead">Чек-ап стоит от 15 000 ₽. Первые 50 участников «Основного» и VIP получают его в подарок. На второй неделе получаешь направление в лабораторию-партнёра: точки есть в 86 городах России. Дальше каждый урок разбираешь <strong>со своим бланком перед глазами,</strong> а не на чужих примерах. Если места с подарком закончатся, сдашь анализы сам по готовой корзине.</p></div>
+    <div class="weeks stagger">
+      <div class="week rv"><div class="week-n">Неделя 1</div><div class="week-t">Понять, что с тобой</div><p>Почему уходят желание, силы и форма. Какой из трёх сценариев твой. Анкета и направление на чек-ап.</p></div>
+      <div class="week rv"><div class="week-n">Неделя 2</div><div class="week-t">Сдать чек-ап и составить план</div><p>Сон, питание, дефициты, тренировки. Что можно вернуть без терапии, а где она нужна.</p></div>
+      <div class="week rv"><div class="week-n">Неделя 3</div><div class="week-t">Решение и контроль</div><p>ГЗТ без страха и мифов: кому нужна, кому нет. Гематокрит, эстрадиол, липиды. Фертильность.</p></div>
+      <div class="week rv"><div class="week-n">Дальше 6 месяцев</div><div class="week-t">Сопровождение</div><p>Чат с Александром и живые разборы раз в две недели. Приносишь свежий бланк, смотрим динамику.</p></div>
+    </div>
+    <div class="forc rv"><strong>Если у тебя всё нормально и ты хочешь больше.</strong> Узнаешь, какие из 16 показателей у тебя на нижней границе нормы и тормозят рост. Поднимешь их сном, питанием, тренировками и восстановлением. А дальше будешь следить за прогрессом по цифрам, а не по ощущениям. Терапия тебе не нужна, и курс не подталкивает к ней.</div>
+
+    <div class="head rv" style="margin:72px 0 0"><div class="eyebrow">Программа целиком</div><h3>3 модуля, 15 уроков и бонус</h3>
+    <p class="lead">Маршрут, а не библиотека роликов: что со мной происходит, что с этим делать, как вести себя дальше. Уроки по 25–45 минут, к каждому – конспект.</p></div>
+    <div class="modules stagger">
+      <div class="mod rv">
+        <div class="mod-h"><span class="mod-n">Модуль 1</span><span class="mod-t">Понять, что происходит</span></div>
+        <ol>
+          <li><span>01</span><span><span class="les-t">Почему мужское состояние проседает</span><span class="les-d">Симптомы, которые нельзя списывать на возраст.</span></span></li>
+          <li><span>02</span><span><span class="les-t">Как работает система тестостерона</span><span class="les-d">Ось гипоталамус-гипофиз-яички. Обратная связь.</span></span></li>
+          <li><span>03</span><span><span class="les-t">Как смотреть на анализы</span><span class="les-d">ГСПГ, альбумин, свободная фракция, конверсия в ДГТ и эстрадиол.</span></span></li>
+          <li><span>04</span><span><span class="les-t">Как определить свой сценарий</span><span class="les-d">Первичный, вторичный, смешанный. Пролактин, кортизол, щитовидка.</span></span></li>
+        </ol>
+      </div>
+      <div class="mod rv">
+        <div class="mod-h"><span class="mod-n">Модуль 2</span><span class="mod-t">План действий и база</span></div>
+        <ol>
+          <li><span>05</span><span><span class="les-t">План под каждый сценарий</span><span class="les-d">Анализы, контроль, подбор периода, способы введения.</span></span></li>
+          <li><span>06</span><span><span class="les-t">Негормональные маски</span><span class="les-d">Пролактин, кортизол, щитовидка. Когда можно обойтись без терапии.</span></span></li>
+          <li><span>07</span><span><span class="les-t">Либидо и эрекция: почему дело не всегда в тестостероне<span class="new">Новое</span></span><span class="les-d">Сон, стресс, пролактин, эстрадиол. Когда нужен профильный специалист.</span></span></li>
+          <li><span>08</span><span><span class="les-t">Сон как фундамент</span><span class="les-d">Апноэ, протоколы нормализации.</span></span></li>
+          <li><span>09</span><span><span class="les-t">Питание и дефициты</span><span class="les-d">Цинк, магний, железо, витамин D. Почему дефицит калорий убивает тестостерон.</span></span></li>
+          <li><span>10</span><span><span class="les-t">Тренировки и восстановление</span><span class="les-d">Перетрен и функциональный гипогонадизм у спортсменов.</span></span></li>
+        </ol>
+      </div>
+      <div class="mod rv">
+        <div class="mod-h"><span class="mod-n">Модуль 3</span><span class="mod-t">Что делать дальше</span></div>
+        <ol>
+          <li><span>11</span><span><span class="les-t">ГЗТ без страха и мифов</span><span class="les-d">Кому нужно, кому нет. Пожизненно или нет.</span></span></li>
+          <li><span>12</span><span><span class="les-t">Фертильность: что важно знать до вмешательства<span class="new">Новое</span></span><span class="les-d">Сперматогенез, ЛГ и ФСГ. Почему вопрос детей решается до, а не после.</span></span></li>
+          <li><span>13</span><span><span class="les-t">Анализы: что смотреть и как читать</span><span class="les-d">Общий и свободный Т, ГСПГ, ЛГ, ФСГ, эстрадиол, пролактин, ПСА, гематокрит, липиды, ТТГ, Т4, кортизол.</span></span></li>
+          <li><span>14</span><span><span class="les-t">Побочки и их коррекция</span><span class="les-d">Гематокрит, эстрадиол, акне, облысение.</span></span></li>
+          <li><span>15</span><span><span class="les-t">Если ты уже на ГЗТ или курсе<span class="new">Новое</span></span><span class="les-d">Какие показатели отслеживать и как часто. Почему чужая схема не переносится на тебя.</span></span></li>
+        </ol>
+      </div>
+    </div>
+    <div class="bonus rv"><span>Бонус</span><span><strong>Пептиды в восстановлении.</strong> <span class="muted">Что заявлено, что доказано, когда имеет смысл.</span></span></div>
+
+    <div class="incl-wrap">
+      <div class="incl rv">
+        <h3>Что входит</h3>
+        <ul class="incl" style="gap:14px">
+          <li class="gift-li"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="8" width="18" height="13" rx="1"/><path d="M12 8v13M3 12h18"/></svg><span><b>Чек-ап из 16 анализов в подарок первым 50 участникам (отдельно от 15 000 ₽):</b> гормоны, щитовидка, кровь, биохимия, липиды, витамин D, ПСА</span></li>
+          <li><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><span>15 уроков по 25–45 минут и бонусный урок про пептиды</span></li>
+          <li><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><span>Чат с Александром: приносишь свои цифры и вопрос, получаешь ответ</span></li>
+          <li><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><span>Живые разборы раз в две недели, только для участников</span></li>
+          <li><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><span>Конспекты к каждому уроку, карта связок, готовые корзины анализов</span></li>
+          <li><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><span>Домашние задания для себя и тестирование после обучения</span></li>
+          <li><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><span>Чат участников: мужики в такой же ситуации, вопрос можно задать без имени</span></li>
+          <li><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><span>Комплект EVS: футболка и шорты</span></li>
+          <li><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><span>Доступ 6 месяцев, включая всё, что добавится</span></li>
+        </ul>
+      </div>
+      <div class="city rv"><b>86</b><span class="lead">городов России, где можно сдать анализы</span><a class="btn btn--ghost btn--sm" href="https://t.me/Evseev_kodtestesterona" target="_blank" rel="noopener">Спросить про мой город</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- 6. TRUST -->
+<section class="sec sec--g">
+  <div class="wrap">
+    <div class="author">
+      <div class="author-photo rv"><img src="img/evs-field.jpg" alt="Александр Евсеев"></div>
+      <div class="author-copy">
+        <div class="eyebrow rv">Автор программы</div>
+        <h2 class="rv">Александр Евсеев не просто рассказывает про это. <em>Он через это прошёл</em></h2>
+        <p class="rv">20 лет в спорте и мужском здоровье. В прошлом выступающий бодибилдер и десять лет на курсах.</p>
+        <p class="rv">Потом нулевая спермограмма. Почти два с половиной года восстановления. Сейчас ему за 40, у него три дочки, и энергии больше, чем в 25.</p>
+        <p class="strong rv">Он знает обе стороны: как себе навредить и как из этого выбраться. Поэтому не пугает терапией и не продаёт её как волшебную таблетку.</p>
+      </div>
+    </div>
+    <div class="nums stagger">
+      <div class="num rv"><b data-to="20">20</b><span>лет в теме</span></div>
+      <div class="num rv"><b><span data-to="145">145</span> тыс.</b><span>подписчиков на YouTube: «Живая сталь» и Alpha Protocol</span></div>
+      <div class="num rv"><b><span data-to="6">6</span> млн</b><span>просмотров</span></div>
+      <div class="num rv"><b><span data-to="100">100</span>+</b><span>разобранных бланков</span></div>
+    </div>
+    <figure class="sasha rv"><blockquote>«Я не лаборатория, которой выгодно продавать вам всё больше исследований. И не врач, которому выгодно вас вести годами. Моя задача: чтобы вы сами понимали, что с вами происходит и как на это повлиять».</blockquote><figcaption>Александр Евсеев</figcaption></figure>
+
+    <div class="who rv">
+      <div class="eyebrow">Кто уже прошёл</div>
+      <h3>Предприниматели, сварщик, водитель, стоматолог, тренер</h3>
+      <p class="lead">От 32 до 53 лет. От Калининграда до Владивостока и Норильска. Сообщения учеников из чата курса публикуем с согласия авторов, имена скрыты: тема личная.</p>
+    </div>
+    <figure class="rev-main rv">
+      <div class="tagr">Было → стало</div>
+      <blockquote>
+        <span>«Первые два укола: просто режим супермена. <span class="hl">Энергия, либидо, памп, всё на 200%.</span> Силовые и выносливость на высоте. Увеличил количество тренировок до 5 раз в неделю, потому что успевал полностью восстанавливаться и снова хотелось в зал.</span>
+        <span>После третьего укола вау-эффект начал постепенно проходить. После четвёртого состояние уже стабильное, без прежних вау-эффектов, но <span class="hl">однозначно лучше, чем до ГЗТ.</span></span>
+        <span>Сейчас продолжаю тренироваться 5 раз в неделю. <span class="hl">Восстановление по ощущениям как в 20–25 лет.</span> В целом самочувствие отличное».</span>
+      </blockquote>
+      <figcaption><i></i>Участник программы · на терапии</figcaption>
+    </figure>
+    <div class="revs stagger">
+      <figure class="rev rv"><blockquote>«Александр, привет! <span class="hl">Состояние огонь.</span> После [корректировки схемы] <span class="hl">залитость прошла, как и негативное состояние.</span> Решил пройти обучение, чтобы лучше разбираться в теме».</blockquote><figcaption><i></i>Участник · сообщение Александру</figcaption></figure>
+      <figure class="rev rv"><blockquote>«Я очень надеюсь, что доступ к материалам останется. Потому что <span class="hl">таких знаний в принципе нет нигде.</span> Когда наступит день Х, хочу, чтобы материал был под рукой. Чтобы не было „на курсе 10 лет и всё со мной нормально“, а потом помер на беговой дорожке».</blockquote><figcaption><i></i>Участник первого потока</figcaption></figure>
+      <figure class="rev rv"><blockquote>«Урологу и эндокринологу я задал вопрос, есть ли по моим показателям признаки гипогонадизма. Оба пожали плечами и отправили к андрологу. А гематолог, увидев креатинин, сказала, что от креатина с протеином у меня могут отказать почки. При этом часть специалистов были кандидатами медицинских наук. <span class="hl">Благодаря проекту я теперь гораздо лучше понимаю свои показатели и задаю врачам предметные вопросы</span>».</blockquote><figcaption><i></i>Участник первого потока · чат курса</figcaption></figure>
+      <figure class="rev rv"><blockquote>«Сходил к эндокринологу по ОМС обсудить анализы. Оказалось, что она ничего по теме уже с института не помнит. <span class="hl">Сошлись на том, что я придерживаюсь протокола (…), а она повторит материал к следующему приёму.</span> С терапевтом то же самое было. Сидел, молча слушал, а потом сказал: „я с вами согласен“».</blockquote><figcaption><i></i>Участник первого потока · чат курса</figcaption></figure>
+    </div>
+    <div class="btns rv" style="margin-top:40px"><a class="btn" href="https://t.me/Evseev_kodtestesterona" target="_blank" rel="noopener">Разобрать мою ситуацию</a></div>
+  </div>
+</section>
+
+<!-- 7. PRICE -->
+<section class="sec" id="price">
+  <div class="wrap">
+    <div class="head rv"><div class="eyebrow">Цена</div><h2>Сколько стоит <em>перестать терпеть</em></h2></div>
+    <div class="anchor stagger">
+      <div class="anc rv"><span>Разовый приём эндокринолога</span><b>5 000–15 000 ₽</b><span>за один бланк</span></div>
+      <div class="anc rv"><span>Мужской чек-ап с ГСПГ и врачом в клиниках Москвы</span><b>24 000–40 000 ₽</b><span>один раз</span></div>
+      <div class="anc anc--hi rv"><span>«Код тестостерона», тариф «Основной»</span><b>28 900 ₽</b><span>программа и 6 месяцев чата с Александром. Первым 50 ещё и чек-ап в подарок</span></div>
+    </div>
+    <p class="lead rv" style="margin-top:24px">Врач на приёме разберёт один бланк. Через полгода у тебя новый, и ты снова платишь. Здесь ты уносишь навык на все следующие сдачи.</p>
+
+    <div class="plans stagger">
+      <div class="plan rv">
+        <div class="plan-n">Теория</div>
+        <div><div class="plan-p">18 900 ₽</div><div class="plan-r">или 4 725 ₽/мес на 4 месяца</div></div>
+        <ul>
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FF3B42" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>Программа: 15 уроков и бонус</li>
+          <li class="no"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>Без чек-апа: анализы сдаёшь сам</li>
+          <li class="no"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>Без чата и живых разборов</li>
+        </ul>
+        <a class="btn btn--ghost" href="https://kodtestosterona.online/course3_0" target="_blank" rel="noopener">Оплатить «Теорию»</a>
+      </div>
+      <div class="plan plan--main rv">
+        <span class="plan-badge">Выбор большинства</span>
+        <div class="plan-n">Основной</div>
+        <div><div class="plan-p">28 900 ₽</div><div class="plan-r">или 7 225 ₽/мес на 4 месяца</div></div>
+        <div class="calc">Первые 50 получают сверху чек-ап на 15 000 ₽ в подарок. Это больше, чем вся разница с «Теорией».</div>
+        <ul>
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FF3B42" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><strong>Чек-ап 16 анализов в подарок первым 50</strong></li>
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FF3B42" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>Программа: 15 уроков и бонус</li>
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FF3B42" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>Чат с Александром и живые разборы 6 месяцев</li>
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FF3B42" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>Комплект EVS: футболка и шорты</li>
+        </ul>
+        <a class="btn" href="https://kodtestosterona.online/course3_0" target="_blank" rel="noopener">Забрать место с чек-апом</a>
+      </div>
+      <div class="plan rv">
+        <div class="plan-n">VIP <span style="font-family:var(--f-mono);font-size:14px;color:var(--red);letter-spacing:.1em">4 места</span></div>
+        <div><div class="plan-p">101 900 ₽</div><div class="plan-r">или 25 475 ₽/мес на 4 месяца</div></div>
+        <ul>
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FF3B42" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>Всё из «Основного», включая чек-ап в подарок</li>
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FF3B42" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><strong>Личное ведение Александром, отдельный чат</strong></li>
+        </ul>
+        <a class="btn btn--ghost" href="https://t.me/Evseev_kodtestesterona" target="_blank" rel="noopener">Узнать про VIP</a>
+      </div>
+    </div>
+    <p class="note rv" style="margin-top:22px">Проценты банку за рассрочку платим мы. Или закрепи место предоплатой 5 000 ₽, остаток до 30 ноября.</p>
+
+    <div class="now rv">
+      <h3>Почему решать сейчас</h3>
+      <div class="now-g">
+        <div><strong>Чек-ап в подарок только первым 50 участникам.</strong>
+          <span>Потом анализы придётся сдавать за свои деньги, от 15 000 ₽.</span></div>
+        <div><strong>Старт 30 ноября, последний поток в этом году.</strong><span>Следующий в январе. Это ещё два месяца без сил и желания.</span></div>
+        <div><strong>VIP: 4 места.</strong><span>Больше Александр лично не ведёт.</span></div>
+      </div>
+    </div>
+    <div class="btns rv" style="margin-top:36px"><a class="btn" href="https://t.me/Evseev_kodtestesterona" target="_blank" rel="noopener">Разобрать мою ситуацию</a><a class="btn btn--ghost" href="https://kodtestosterona.online/course3_0" target="_blank" rel="noopener">Оплатить «Основной»</a></div>
+  </div>
+</section>
+
+<!-- 8. FAQ -->
+<section class="sec sec--g">
+  <div class="wrap">
+    <div class="head rv"><div class="eyebrow">Вопросы</div><h2>Что обычно спрашивают</h2></div>
+    <div class="faq stagger">
+      <details class="rv" open><summary>Я боюсь сесть на терапию навсегда</summary><div class="faq-b">Программа не отправляет всех на ГЗТ. Сначала ты узнаешь, в чём причина. Часто силы забирают сон, дефицит железа, пролактин или щитовидка. Их исправляют без терапии. А если она нужна, ты входишь в неё с картой, а не по совету из зала.</div></details>
+      <details class="rv"><summary>А если я хочу детей?</summary><div class="faq-b">Вопрос детей решается до терапии, а не после. В программе есть отдельный урок про фертильность. Александр сам восстанавливал её после десяти лет курсов.</div></details>
+      <details class="rv"><summary>Я уже на терапии и много знаю. Зачем мне курс?</summary><div class="faq-b">Знать схему и видеть риск на своём бланке заранее не одно и то же. Половина первого потока уже была на терапии. Пришли, потому что эффект ушёл или полезли побочки.</div></details>
+      <details class="rv"><summary>Анализы у меня в норме. Мне сюда?</summary><div class="faq-b">Да, если самочувствие не в норме. Бывает, что общий тестостерон в пределах, а свободного почти нет. Это видно только по связке показателей.</div></details>
+      <details class="rv"><summary>У меня всё нормально, я просто хочу стать лучше</summary><div class="faq-b">Тебе сюда. Чек-ап покажет, какие показатели у тебя на нижней границе и что тормозит рост в зале. Разница между «нормально» и «отлично» обычно сидит в цифрах, на которые никто не смотрит.</div></details>
+      <details class="rv"><summary>Мне 25–30. Не рано ли?</summary><div class="faq-b">Не рано. Чем раньше разберёшься в своих цифрах, тем меньше ошибок наделаешь. Курс уже покупают мужчины от 27 лет. Особенно он нужен, если ты тренируешься на курсах или планируешь детей.</div></details>
+      <details class="rv"><summary>Я ничего не понимаю в анализах. Справлюсь?</summary><div class="faq-b">Программа начинается с нуля. В первом потоке были сварщик, водитель и автомеханик. Все разобрались.</div></details>
+      <details class="rv"><summary>У меня нет времени</summary><div class="faq-b">Урок 25–45 минут, можно с телефона. Доступ 6 месяцев: если выпал из графика, догонишь.</div></details>
+      <details class="rv"><summary>Это не самолечение?</summary><div class="faq-b">Самолечение: это когда видишь красную строку и покупаешь препарат. Здесь ты учишься понимать картину и приходить к врачу с конкретными вопросами.</div></details>
+      <details class="rv"><summary>Дорого</summary><div class="faq-b">Посчитай: один чек-ап в клинике стоит от 15 000 ₽, а первым 50 участникам мы его дарим. Рассрочка на 4 месяца без переплат: 7 225 ₽ в месяц. Или тариф «Теория» за 18 900 ₽, если анализы сдаёшь сам.</div></details>
+      <details class="rv"><summary>Что будет, когда 50 мест с подарком закончатся?</summary><div class="faq-b">«Основной» останется по той же цене, но без чек-апа: анализы сдашь сам по нашей готовой корзине. Обучение, чат с Александром и живые разборы те же. Подарок получают только первые 50.</div></details>
+      <details class="rv"><summary>В моём городе есть лаборатория?</summary><div class="faq-b">Лаборатория-партнёр работает в 86 городах. Если в твоём городе точки нет, можно сдать анализы в ближайшем городе из списка. Или взять «Теорию» и сдать анализы в любой удобной лаборатории.</div></details>
+      <details class="rv"><summary>Что будет после оплаты?</summary><div class="faq-b">В тот же день придёт доступ в чат курса. Уроки откроются 30 ноября. На второй неделе придёт направление на анализы.</div></details>
+    </div>
+  </div>
+</section>
+
+<!-- 9. FINAL -->
+<section class="final" id="final">
+  <div class="wrap final-in">
+    <div class="gift rv">16 анализов в подарок первым 50</div>
+    <h2 class="rv" style="font-size:clamp(40px,6.4vw,80px)">Твой чек-ап на 15 000 ₽ <em>уже ждёт</em></h2>
+    <p class="lead rv">Можно посмотреть ещё сто роликов. Можно ещё год спрашивать в чате и терпеть.</p>
+    <p class="rv" style="font-family:var(--f-disp);font-size:clamp(24px,2.8vw,32px);font-weight:600;line-height:1.25;max-width:30ch">Или через месяц держать свои анализы и знать, что делать с желанием, силами и телом.</p>
+    <p class="lead rv">Напиши нам свою ситуацию. Ответит Александр или его команда. Разберём, твой ли это случай. Если не твой, скажем честно и подскажем, к какому врачу идти.</p>
+    <div class="mess stagger">
+      <a class="tg rv" href="https://t.me/Evseev_kodtestesterona" target="_blank" rel="noopener"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.5 4.3L2.9 11.5c-1 .4-1 1.6 0 1.9l4.6 1.4 1.8 5.6c.2.7 1.1.9 1.6.4l2.6-2.4 4.7 3.5c.6.4 1.4.1 1.6-.6l3.2-15.4c.2-.9-.6-1.6-1.5-1.3zM9.6 14.2l8.6-7.6-6.9 8.7-.3 3.2-1.4-4.3z"/></svg></span><b>Telegram</b><span class="go">→</span></a>
+      <a class="wa rv" href="https://wa.me/79207407555" target="_blank" rel="noopener"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21l1.6-4.7A8.5 8.5 0 1 1 8 19.6z"/><path d="M9 9.5c.4 2.6 2.3 4.6 5 5.3l1-1.2 2 .9-.5 1.6c-4 .6-8.3-3.6-8-7.6L10 8l1 2z"/></svg></span><b>WhatsApp</b><span class="go">→</span></a>
+      <button type="button" class="mx rv" id="maxCopy" data-phone="+79207407555"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 18V6l7 8 7-8v12"/></svg></span><span style="display:flex;flex-direction:column;align-items:flex-start;gap:2px"><b>MAX</b><span id="maxHint" style="font-family:var(--f-mono);font-size:13px;letter-spacing:.06em;color:var(--text-3)">+7 920 740-75-55 · нажми, чтобы скопировать</span></span></button>
+    </div>
+    <p class="note rv">Отвечаем с 10:00 до 20:00 по Москве, обычно в течение часа. Можно написать без имени: тема личная, мы понимаем.</p>
+    <a class="rv" href="#price" style="color:var(--red);font-weight:700;font-size:19px">Уже решил? Оплатить место в потоке →</a>
+  </div>
+</section>
+</main>
+
+<footer><div class="wrap">Результат зависит от исходного состояния, причин и того, как ты применяешь знания. Программа образовательная, не является медицинской услугой и не заменяет врача: диагнозы и назначения остаются за ним. ИП Евсеев Александр Алексеевич.</div></footer>
+
+<div class="sticky" id="sticky">
+  <div class="sticky-t">Чек-ап в подарок<small>первым 50 участникам</small></div>
+  <a class="btn" href="https://t.me/Evseev_kodtestesterona" target="_blank" rel="noopener">Разобрать ситуацию</a>
+</div>
+
+<script>
+(function(){
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.documentElement.classList.add('js');
+
+  function countTo(el, to){
+    if(reduce){ el.textContent = to; return; }
+    var t0 = null, dur = 1600;
+    function step(ts){ if(!t0) t0 = ts; var k = Math.min(1,(ts-t0)/dur); el.textContent = Math.round(to*(1-Math.pow(1-k,3))); if(k<1) requestAnimationFrame(step); }
+    requestAnimationFrame(step);
+  }
+
+  var io = 'IntersectionObserver' in window ? new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if(!e.isIntersecting) return;
+      var el = e.target;
+      el.classList.add('in');
+      el.querySelectorAll && el.querySelectorAll('[data-to]').forEach(function(c){ countTo(c, +c.getAttribute('data-to')); });
+      io.unobserve(el);
+    });
+  },{threshold:.15, rootMargin:'0px 0px -6% 0px'}) : null;
+
+  var targets = document.querySelectorAll('.rv');
+  if(io){ targets.forEach(function(t){ io.observe(t); }); }
+  else { targets.forEach(function(t){ t.classList.add('in'); }); }
+
+  // tabs
+  var tabs = document.querySelectorAll('.tab');
+  tabs.forEach(function(t, i){
+    t.addEventListener('click', function(){ select(t); });
+    t.addEventListener('keydown', function(ev){
+      var n = null;
+      if(ev.key === 'ArrowRight') n = tabs[(i+1)%tabs.length];
+      if(ev.key === 'ArrowLeft') n = tabs[(i-1+tabs.length)%tabs.length];
+      if(n){ ev.preventDefault(); n.focus(); select(n); }
+    });
+  });
+  function select(t){
+    tabs.forEach(function(x){
+      var on = x === t;
+      x.setAttribute('aria-selected', on ? 'true' : 'false');
+      x.tabIndex = on ? 0 : -1;
+      document.getElementById(x.getAttribute('aria-controls')).hidden = !on;
+    });
+  }
+  select(document.getElementById('t-b'));
+
+
+  // MAX: copy phone
+  var mb = document.getElementById('maxCopy'), mh = document.getElementById('maxHint');
+  if(mb) mb.addEventListener('click', function(){
+    var ph = mb.getAttribute('data-phone');
+    function done(t){ mh.textContent = t; }
+    try{ navigator.clipboard.writeText(ph).then(function(){ done('Номер скопирован. Найди его в MAX'); }, function(){ done('+7 920 740-75-55'); }); }
+    catch(e){ done('+7 920 740-75-55'); }
+  });
+  // scroll progress + sticky
+  var bar = document.getElementById('progress'), sticky = document.getElementById('sticky'), hero = document.querySelector('.hero'), fin = document.getElementById('final');
+  function onScroll(){
+    var h = document.documentElement.scrollHeight - innerHeight;
+    bar.style.transform = 'scaleX(' + (h > 0 ? scrollY / h : 0) + ')';
+    var past = hero.getBoundingClientRect().bottom < 0;
+    var atEnd = fin.getBoundingClientRect().top < innerHeight * .6;
+    sticky.classList.toggle('on', past && !atEnd);
+  }
+  addEventListener('scroll', onScroll, {passive:true}); onScroll();
+})();
+</script>
+</body>
+</html>
